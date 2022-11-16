@@ -12,6 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'plugin:import/errors',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
@@ -20,7 +21,14 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint'],
+  plugins: [
+    'react',
+    'react-hooks',
+    '@typescript-eslint',
+    'prettier',
+    'import',
+    'eslint-plugin-unused-imports',
+  ],
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: ['error', 'single', { avoidEscape: true }],
@@ -30,10 +38,21 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     'react/display-name': 'off',
     'react/prop-types': 'off',
+    'prettier/prettier': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'sort-imports': 0,
+    'import/order': [2, { alphabetize: { order: 'asc' } }],
+    'import/no-unresolved': 'off',
+    'unused-imports/no-unused-imports': 'error',
   },
   settings: {
     react: {
       version: 'detect',
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.ts'],
+      },
     },
   },
 };
