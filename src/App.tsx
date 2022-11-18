@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import LottieAnimationComponent from './LottieAnimationComponent';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,8 +14,7 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <LottieAnimationComponent />
     </View>
   );
 };
