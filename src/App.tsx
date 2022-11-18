@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import LottieView from 'lottie-react-native';
 import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
-import LottieAnimationComponent from './LottieAnimationComponent';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <LottieAnimationComponent />
+      <LottieView source={require('./assets/lottie/lottie_box_ani.json')} autoPlay />
     </View>
   );
 };
