@@ -1,6 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import LottieView from 'lottie-react-native';
 import { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,8 +15,22 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <LottieView
+        source={require('./assets/lottie/lottie_box_ani.json')}
+        autoPlay
+        loop
+        style={{
+          height: 90,
+          borderStyle: 'solid',
+          borderWidth: 1,
+        }}
+        colorFilters={[
+          {
+            keypath: 'box_clip',
+            color: '#00c3ff',
+          },
+        ]}
+      />
     </View>
   );
 };
