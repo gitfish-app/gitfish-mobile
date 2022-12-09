@@ -15,7 +15,22 @@ const styles = StyleSheet.create({
 const App: FC = () => {
   return (
     <View style={styles.container}>
-      <LottieView source={require('./assets/lottie/lottie_box_ani.json')} autoPlay />
+      <LottieView
+        source={require('./assets/lottie/lottie_box_ani.json')}
+        autoPlay
+        loop
+        style={{
+          height: 90,
+          borderStyle: 'solid',
+          borderWidth: 1,
+        }}
+        colorFilters={[
+          {
+            keypath: 'box_clip',
+            color: '#00c3ff',
+          },
+        ]}
+      />
     </View>
   );
 };
