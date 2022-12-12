@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import LottieView from 'lottie-react-native';
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -13,11 +13,22 @@ const styles = StyleSheet.create({
 });
 
 const App: FC = () => {
+  const lottieRef = useRef<LottieView>(null);
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      setTimeout(() => {
+        lottieRef.current?.reset();
+        lottieRef.current?.play();
+      }, 100);
+    }
+  }, [lottieRef.current]);
+
   return (
     <View style={styles.container}>
       <LottieView
+        ref={lottieRef}
         source={require('./assets/lottie/lottie_box_ani.json')}
-        autoPlay
         loop
         style={{
           height: 90,
