@@ -1,47 +1,60 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import LottieView from 'lottie-react-native';
-import { FC, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import {
+  useFonts as useMontserrat,
+  Montserrat_400Regular,
+  Montserrat_700Bold,
+} from '@expo-google-fonts/montserrat';
+import {
+  useFonts as useNotoSans,
+  NotoSansJP_400Regular,
+  NotoSansJP_700Bold,
+} from '@expo-google-fonts/noto-sans-jp';
+// import * as SplashScreen from 'expo-splash-screen';
+import { FC, useState } from 'react';
+
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
 
-const App: FC = () => {
-  const lottieRef = useRef<LottieView>(null);
+// const DAILY_GOAL = 2000;
 
-  useEffect(() => {
-    if (lottieRef.current) {
-      setTimeout(() => {
-        lottieRef.current?.reset();
-        lottieRef.current?.play();
-      }, 100);
-    }
-  }, [lottieRef.current]);
+// SplashScreen.preventAutoHideAsync();
+
+const App: FC = () => {
+  const [montserratLoaded] = useMontserrat({
+    Montserrat_400Regular,
+    Montserrat_700Bold,
+  });
+  const [notoSansLoaded] = useNotoSans({
+    NotoSansJP_400Regular,
+    NotoSansJP_700Bold,
+  });
+
+  const [amountOfWater, setAmountOfWater] = useState(1200);
+
+  const drink = () => {
+    setAmountOfWater(amountOfWater + 200);
+  };
+
+  // const onLayoutRootView = useCallback(async () => {
+  // if (montserratLoaded && notoSansLoaded) {
+  // await SplashScreen.hideAsync();
+  // }
+  // }, [montserratLoaded, notoSansLoaded]);
+
+  if (!(montserratLoaded && notoSansLoaded)) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
-      <LottieView
-        ref={lottieRef}
-        source={require('./assets/lottie/lottie_box_ani.json')}
-        loop
-        style={{
-          height: 90,
-          borderStyle: 'solid',
-          borderWidth: 1,
-        }}
-        colorFilters={[
-          {
-            keypath: 'box_clip',
-            color: '#00c3ff',
-          },
-        ]}
-      />
+      <Text>{amountOfWater}</Text>
+      <Text onPress={drink}>Drink!</Text>
     </View>
   );
 };
